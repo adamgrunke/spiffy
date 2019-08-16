@@ -10,7 +10,7 @@ export interface IUser {
   spotifyId: number;
 }
 
-export interface IRepo {
+export interface IPlaylist {
   name: string
 }
 
@@ -18,14 +18,14 @@ export interface IRepo {
 const App: React.FC = () => {
   // useState can be used as a generic 
   const [user, setUser] = useState<IUser>({} as IUser)
-  const [repos, setRepos] = useState<IRepo[]>([])
+  const [playlists, setPlaylist] = useState<IPlaylist[]>([])
 
   useEffect(() => {
     console.log('firing data fetch')
     if (Object.keys(user).length) {
-      axios.get(`/api/${user.spotifyId}/repos`)
+      axios.get(`/api/${user.spotifyId}/playlists`)
       .then((res) => {
-        setRepos(res.data)
+        setPlaylist(res.data)
       })
     }
   }, [user])
@@ -41,13 +41,28 @@ const App: React.FC = () => {
   }
 
   var userData = Object.keys(user).length === 0 ? <p>No user</p> : <p> {user.spotifyId}</p>
+  console.log("Playlist!!!!!!!!!!!!!$$$$$$$$$$$%%%%%%%%%%%%%")
+  // if (playlists.length !== 0 ) {
 
-
-
+  //   console.log(playlists[0].name)
+  // }
+  
+    var playlistData = playlists.map((playlist, id) => {
+      return (
+          <p> {playlist.name}</p>
+      )
+    }) 
+  
+  
+  
+  
   return (
     <div className="App">
       <a onClick={handleLogin} href="/auth/spotify">Login to Spotify</a>
       {userData}
+      <hr/>
+      <h3>PLAYLISTS!</h3>
+      {playlistData}
     </div>
   );
 }

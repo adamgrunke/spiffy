@@ -21,7 +21,7 @@ function(accessToken, refreshToken, expires_in, profile, cb) {
                 spotifyId: profile.id
             }, (err, user) => {
                 if (err) console.log("Here is an ERRRRRRORRR: ", err)
-                return cb(null, {...user.toObject(), accessToken});
+                return cb(null, {...user, accessToken});
             })
         } else {
             console.log("In db UUUUUSER ID: ", user)
