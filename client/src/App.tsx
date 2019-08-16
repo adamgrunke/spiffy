@@ -41,16 +41,13 @@ const App: React.FC = () => {
   }
 
   var userData = Object.keys(user).length === 0 ? <p>No user</p> : <p> {user.spotifyId}</p>
-  var repoData = repos.map((repo, id) => {
-    return <p> {repo.name}</p>
-  }) 
+
 
 
   return (
     <div className="App">
       <a onClick={handleLogin} href="/auth/spotify">Login to Spotify</a>
       {userData}
-      {repoData}
     </div>
   );
 }
