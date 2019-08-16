@@ -10,12 +10,12 @@ router.get('/:id/repos', (req, res) => {
             'User-Agent': 'onoroff-github-app'
         }
     }
-    axios.get(`https://api.github.com/user/repos`, config)
-    .then((response) => {
-        res.json(response.data);
-    }).catch((err) => {
-        console.log(err);
-    })
+    // axios.get(`https://api.github.com/user/repos`, config)
+    // .then((response) => {
+    //     res.json(response.data);
+    // }).catch((err) => {
+    //     console.log(err);
+    // })
 })
 
 export default router;

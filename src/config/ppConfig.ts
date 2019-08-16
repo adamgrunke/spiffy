@@ -1,8 +1,8 @@
 import dotenv from 'dotenv';
 dotenv.config();
 import passport from 'passport';
-import passportSpotify2 from 'passport-github2';
-const SpotifyStrategy = passportSpotify2.Strategy;
+import passportSpotify from 'passport-spotify';
+const SpotifyStrategy = passportSpotify.Strategy;
 import User from '../models/user';
 
 passport.use(new SpotifyStrategy({
