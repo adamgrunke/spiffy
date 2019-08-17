@@ -15,3 +15,12 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.playlist {
+  border: 1px solid black;
+  width: 40%;
+  background-color: gray;
+  padding: 10px;
+  text-align: left;
+}
+
