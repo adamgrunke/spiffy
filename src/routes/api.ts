@@ -28,13 +28,15 @@ router.get('/:user_id/playlists/:playlist_id', (req, res) => {
             'Authorization': `Bearer ${req.user.accessToken}`
         }
     }
-    console.log("HIT THE plAYlisT get tracks route!")
+    // console.log("HIT THE plAYlisT get tracks route!")
     // console.log({req})
     axios.get(`https://api.spotify.com/v1/playlists/${req.params.playlist_id}/tracks`, config)
     // axios.get(`https://api.spotify.com/v1/playlists/0SYhvYUdCNbUKklt7SaYAB/tracks`, config)
     .then((response) => {
-        console.log("&&&&&&&&&&&&&&&&&&&&&&&and now this is the next part of the tracks route!")
+        // console.log("&&&&&&&&&&&&&&&&&&&&&&&and now this is the next part of the tracks route!")
         // console.log(response.data)
+        console.log('Name: ',response.data.items[0].track.artists[0].name, ' ID: ', response.data.items[0].track.artists[0].id)
+        console.log('Name: ',response.data.items[0].track.name, ' ID: ', response.data.items[0].track.id)
         res.json(response.data.items);
     }).catch((err) => {
         console.log(err);
