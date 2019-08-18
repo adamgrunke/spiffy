@@ -22,14 +22,15 @@ export interface ITracks {
 const App: React.FC = () => {
   // useState can be used as a generic 
   const [user, setUser] = useState<IUser>({} as IUser)
-  const [playlists, setPlaylist] = useState<IPlaylist[]>([])
+  const [playlists, setPlaylists] = useState<IPlaylist[]>([])
+  const [playlist, setPlaylist] = useState<Number>()
   const [tracks, setTracks] = useState<ITracks[]>([])
 
   useEffect(() => {
     if (Object.keys(user).length) {
       axios.get(`/api/${user.spotifyId}/playlists`)
       .then((res) => {
-        setPlaylist(res.data)
+        setPlaylists(res.data)
       })
     }
   }, [user])
@@ -44,28 +45,21 @@ const App: React.FC = () => {
     })
   }
 
-  function handlePlaylistClick(e: React.MouseEvent): void {
-    e.preventDefault()
+  function handlePlaylistClick(id: Number): void {
     console.log("CLICKclackCLICK")
-    console.log(e.target)
+    console.log(id)
 
   }
 
-
-
-
-
-
-
-
-  useEffect(() => {
-    console.log("getting TRAACCKS")
-    axios.get(`/api/${user.spotifyId}/playlists/playlist_id`)
-    .then((res) => {
-      console.log(res.data)
-      setTracks(res.data)
-    })
-  }, [playlists])
+  // useEffect(() => {
+  //   // console.log("getting TRAACCKS", playlist)
+  //   axios.get(`/api/${user.spotifyId}/playlists/${playlist}`)
+  //   // axios.get(`/api/${user.spotifyId}/playlists/37i9dQZF1DWZtZ8vUCzche`)
+  //   .then((res) => {
+  //     console.log("tracks: ", res.data)
+  //     setTracks(res.data)
+  //   })
+  // }, [playlist])
 
   var userData = Object.keys(user).length === 0 ? <p>No user</p> : <p> {user.spotifyId}</p>
   // console.log("Playlist!!!!!!!!!!!!!$$$$$$$$$$$%%%%%%%%%%%%%")
@@ -76,9 +70,12 @@ const App: React.FC = () => {
   
     var playlistData = playlists.map((playlist, id) => {
       return (
-        <div onClick={handlePlaylistClick}  className="playlist">
+        <div onClick={() => handlePlaylistClick(playlist.id)}  className="playlist">
           <p> {playlist.name}</p>
         </div>
+        // <div onClick={() => setPlaylist(playlist.id)}  className="playlist">
+        //   <p> {playlist.name}</p>
+        // </div>
       )
     }) 
 
