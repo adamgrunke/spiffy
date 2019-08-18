@@ -23,10 +23,9 @@ const App: React.FC = () => {
   // useState can be used as a generic 
   const [user, setUser] = useState<IUser>({} as IUser)
   const [playlists, setPlaylist] = useState<IPlaylist[]>([])
-  // const [tracks, setTracks] = useState<ITracks[]>([])
+  const [tracks, setTracks] = useState<ITracks[]>([])
 
   useEffect(() => {
-    console.log('firing data fetch')
     if (Object.keys(user).length) {
       axios.get(`/api/${user.spotifyId}/playlists`)
       .then((res) => {
@@ -45,23 +44,31 @@ const App: React.FC = () => {
     })
   }
 
-  // function handlePlaylistClick(e: React.MouseEvent): void {
-  //   e.preventDefault()
-  //   console.log("CLICKclackCLICK")
-  //   // console.log(e.target)
-  // }
+  function handlePlaylistClick(e: React.MouseEvent): void {
+    e.preventDefault()
+    console.log("CLICKclackCLICK")
+    console.log(e.target)
 
-  // useEffect(() => {
-  //   console.log("getting TRAACCKS")
-  //   axios.get(`/api/${user.spotifyId}/playlists/playlist_id`)
-  //   .then((res) => {
-  //     console.log(res.data)
-  //     setTracks(res.data)
-  //   })
-  // }, [playlists])
+  }
+
+
+
+
+
+
+
+
+  useEffect(() => {
+    console.log("getting TRAACCKS")
+    axios.get(`/api/${user.spotifyId}/playlists/playlist_id`)
+    .then((res) => {
+      console.log(res.data)
+      setTracks(res.data)
+    })
+  }, [playlists])
 
   var userData = Object.keys(user).length === 0 ? <p>No user</p> : <p> {user.spotifyId}</p>
-  console.log("Playlist!!!!!!!!!!!!!$$$$$$$$$$$%%%%%%%%%%%%%")
+  // console.log("Playlist!!!!!!!!!!!!!$$$$$$$$$$$%%%%%%%%%%%%%")
   // if (playlists.length !== 0 ) {
 
   //   console.log(playlists[0].name)
@@ -69,8 +76,8 @@ const App: React.FC = () => {
   
     var playlistData = playlists.map((playlist, id) => {
       return (
-        <div className="playlist">
-          <p> {playlist.name} ID: {playlist.id}</p>
+        <div onClick={handlePlaylistClick}  className="playlist">
+          <p> {playlist.name}</p>
         </div>
       )
     }) 
