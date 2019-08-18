@@ -46,9 +46,13 @@ const App: React.FC = () => {
   }
 
   function handlePlaylistClick(id: Number): void {
-    console.log("CLICKclackCLICK")
+    // console.log("CLICKclackCLICK")
     console.log(id)
-
+    axios.get(`/api/${user.spotifyId}/playlists/${id}`)
+      .then((res) => {
+        console.log("tracks: ", res.data)
+        setTracks(res.data)
+      })
   }
 
   // useEffect(() => {
