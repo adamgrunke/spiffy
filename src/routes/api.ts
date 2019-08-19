@@ -46,6 +46,8 @@ router.get('/:user_id/playlists/:playlist_id', (req, res) => {
 })
 
 
+// router.get('/')
+
 // https://api.spotify.com/v1/recommendations?
 // limit=5
 // &market=US

@@ -2,7 +2,7 @@
 // by https://gist.github.com/gauravtiwari
 // Also, from this article: https://medium.com/front-end-weekly/use-github-oauth-as-your-sso-seamle...
 
-import {IUser} from './App'
+import {IUser} from './react-app-env'
 
 function openAuthWindow(myUrl: string): Promise<IUser> {
     //Open the new window

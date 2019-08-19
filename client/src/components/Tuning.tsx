@@ -1,23 +1,10 @@
 import React, {useState} from 'react';
-
-const Tuning: React.FC =() => {
-    const [inst, setInst] = useState<number>(0.5)
-    const [dance, setDance] = useState<number>(0.5)
-    const [energy, setEnergy] = useState<number>(0.5)
+import {ITuning} from '../react-app-env'
+const Tuning: React.FC<ITuning> =({inst, dance, energy, handleChangeInst, handleChangeDance, handleChangeEnergy}) => {
+    
     // (JSX attribute) React.SelectHTMLAttributes<HTMLSelectElement>.onChange?: ((event: React.ChangeEvent<HTMLSelectElement>) => void) | undefined
     
-    const handleChangeInst = (e: React.SyntheticEvent) => {
-        let value = parseFloat((e.target as HTMLSelectElement).value)
-        setInst(value)
-    }   
-    const handleChangeDance = (e: React.SyntheticEvent) => {
-        let value = parseFloat((e.target as HTMLSelectElement).value)
-        setDance(value)
-    }   
-    const handleChangeEnergy = (e: React.SyntheticEvent) => {
-        let value = parseFloat((e.target as HTMLSelectElement).value)
-        setEnergy(value)
-    }   
+  
 
     return(
         <div>
@@ -77,16 +64,7 @@ const Tuning: React.FC =() => {
                     {/* <option value='1.0'>1.0</option> */}
                 </select>
             </div>
-
-
-
-
-
-
         </div>
-
-        
-
     );
 }
 
