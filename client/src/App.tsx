@@ -28,6 +28,8 @@ const App: React.FC = () => {
   const [playlist, setPlaylist] = useState<Number>()
   const [tracks, setTracks] = useState<ITracks[]>([])
 
+  // consts for Tuning component
+
   useEffect(() => {
     if (Object.keys(user).length) {
       axios.get(`/api/${user.spotifyId}/playlists`)

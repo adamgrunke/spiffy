@@ -45,6 +45,17 @@ router.get('/:user_id/playlists/:playlist_id', (req, res) => {
     }) 
 })
 
+
+// https://api.spotify.com/v1/recommendations?
+// limit=5
+// &market=US
+// &seed_artists=6kBjAFKyd0he7LiA5GQ3Gz
+// &seed_tracks=2RSOzvKUnfDDrb2nQPfpQU
+// &target_danceability=.5
+// &target_energy=.5
+// &target_instrumentalness=.5
+
+
 // router.post('')
 
 export default router;
