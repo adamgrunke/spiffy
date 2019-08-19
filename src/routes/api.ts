@@ -35,8 +35,10 @@ router.get('/:user_id/playlists/:playlist_id', (req, res) => {
     .then((response) => {
         // console.log("&&&&&&&&&&&&&&&&&&&&&&&and now this is the next part of the tracks route!")
         // console.log(response.data)
-        console.log('Name: ',response.data.items[0].track.artists[0].name, ' ID: ', response.data.items[0].track.artists[0].id)
-        console.log('Name: ',response.data.items[0].track.name, ' ID: ', response.data.items[0].track.id)
+        console.log('Name: ',response.data.items[0].track.artists[0].name, 
+                    ' ID: ', response.data.items[0].track.artists[0].id)
+        console.log('Name: ',response.data.items[0].track.name, 
+                    ' ID: ', response.data.items[0].track.id)
         res.json(response.data.items);
     }).catch((err) => {
         console.log(err);

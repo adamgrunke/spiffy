@@ -2,6 +2,8 @@ import React, {useState, useEffect} from 'react';
 import './App.css';
 import openNewAuthWindow from './openWindow';
 import axios from 'axios';
+import Tuning from './components/Tuning'
+// import Playlists from './components/Playlists'
 
 // We had to defin this because TS needs to know 
 // the shape of our user object
@@ -90,6 +92,8 @@ const App: React.FC = () => {
       <hr/>
       <h3>PLAYLISTS!</h3>
       {playlistData}
+      <hr/>
+      <Tuning/>
     </div>
   );
 }
