@@ -2,8 +2,8 @@ import dotenv from 'dotenv';
 dotenv.config();
 import passport from 'passport';
 import passportSpotify from 'passport-spotify';
-// const SpotifyStrategy = passportSpotify.Strategy;
-const SpotifyStrategy = require('passport-spotify').Strategy;
+const SpotifyStrategy = passportSpotify.Strategy;
+// const SpotifyStrategy = require('passport-spotify').Strategy;
 import User from '../models/user';
 
 passport.use(new SpotifyStrategy({
@@ -12,25 +12,33 @@ passport.use(new SpotifyStrategy({
     callbackURL: "http://localhost:3000/auth/spotify/callback"
 },
 function(accessToken, refreshToken, expires_in, profile, cb) {
+    console.log("WTFWTFWTFWTFWTFWTFWTFWTFWTFWTFWTFWTFWTFWTFWTFWTFWTFWTFWTFWTFWTF")
+    console.log(profile.id)
     User.findOne({
         spotifyId: profile.id
     }, (err, user) => {
         if (!user) {
-            console.log("GNu UUUUUSER ID: ", user)
+            // console.log("GNu UUUUUSER ID: ", user)
             User.create({
                 spotifyId: profile.id
-            }, (err, user) => {
-                if (err) console.log("Here is an ERRRRRRORRR: ", err)
-                return cb(null, {...user, accessToken});
+            }, (err, newUser) => {
+                if (err) {
+                    console.log("Here is an ERRRRRRORRR: ", err)
+                }
+                console.log("Should have made this new user:", newUser)
+                let returnObj = Object.assign({}, newUser.toObject(), {accessToken})
+                console.log(returnObj)
+                return cb(null, returnObj);
             })
         } else {
-            console.log("In db UUUUUSER ID: ", user)
-            return cb(null, {...user.toObject(), accessToken});
+            console.log("In db UUUUUSER ID:", user)
+            let returnObj = Object.assign({}, user, {accessToken})
+            console.log(returnObj)
+            return cb(null, returnObj);
         }
     })
 }))
     
-
 
 passport.serializeUser(function(user, cb) {
     cb(null, user);

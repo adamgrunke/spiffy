@@ -3,6 +3,7 @@ const router = express.Router();
 import User, {IUser} from '../models/user';
 import Tuning, {ITuning} from '../models/tuning'
 import axios from 'axios';
+// import passport from '../config/ppConfig'
 
 // GET ALL USER PLAYLISTS
 router.get('/:user_id/playlists', (req, res) => {
@@ -23,6 +24,7 @@ router.get('/:user_id/playlists', (req, res) => {
 
 // GET ALL TRACKS FROM SINGLE PLAYLIST
 router.get('/:user_id/playlists/:playlist_id', (req, res) => {
+
     let config = {
         headers: {
             'Authorization': `Bearer ${req.user.accessToken}`
@@ -58,12 +60,15 @@ router.get('/:user_id/playlists/:inst/:dance/:energy/:artist/:track', (req, res)
 // ======================== DB ==================================== //
 // GET ALL playlists for a user
 router.get('/', (req, res) => {
-    Tuning.find().populate('tunings').exec( (err,tuning: ITuning) => {
+    console.log("THE MOTHERFUCKER", req.user)
+
+    console.log("the whole &*&*^%^&*&^%%&*(*&^%^&*^%$%^&^%  request.user:", req.user)
+    User.findById(req.user).populate('tuning').exec( (err, tuning: ITuning) => {
         if (err) res.json(err)
-        console.log(tuning)
+        // console.log(tuning)
         res.send(tuning)
     })
-    res.send("nuthin to see here, folks")
+    // res.send("nuthin to see here, folks")
 });
 
 // POST tuning parameters for a user
@@ -83,23 +88,9 @@ router.post('/', (req, res) => {
             res.json(tuning)
         })
     }
-    res.send("noooooooo!")
+    // res.send("noooooooo!")
     
     // user extends mongoose.Document
-
-    // User.findById(req.user.spotifyId, function(err, user){
-
-    //     },
-    //     function(err, trip) {
-    //         // console.log("trip created", trip)
-    //         // user.tunings.push(tuning)
-    //         user.save(function(err, user) {
-    //             // console.log('this is another user test: ', user)
-    //             if (err) console.log(err)
-    //             res.json(user)
-    //         })
-    //     })
-    // })
 })
 
 // router.post('')

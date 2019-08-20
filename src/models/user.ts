@@ -3,7 +3,7 @@ import mongoose, {Schema} from 'mongoose'
 
 const userSchema = new Schema({
     spotifyId: {
-        type: Number || String,
+        type: String,
         required: [true, 'You need to have a spotify account']
     },
     tuning: [{type: mongoose.Schema.Types.ObjectId, ref: 'Tuning'}]
@@ -21,7 +21,7 @@ userSchema.set('toObject', {
 })
 
 export interface IUser extends mongoose.Document {
-    spotifyId: Number | String
+    spotifyId: String
     tuning: [{type: mongoose.Schema.Types.ObjectId, ref: 'Tuning'}]
 }
 

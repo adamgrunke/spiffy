@@ -45,6 +45,10 @@ const handleChangeEnergy = (e: React.SyntheticEvent) => {
     }
   }, [user])
 
+  useEffect( () => {
+    axios.get('/api').then( res => console.log(res.data))
+  },[user])
+
   function handleLogin(e: React.MouseEvent): void {
     e.preventDefault()
     var message: Promise<IUser> = openNewAuthWindow('/auth/spotify')
