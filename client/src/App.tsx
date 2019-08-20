@@ -8,21 +8,13 @@ import {IUser} from './react-app-env';
 import {IPlaylist} from './react-app-env';
 import {ITracks} from './react-app-env';
 
-// import Playlists from './components/Playlists'
-
-
-
-// We had to defin this because TS needs to know 
-// the shape of our user object
-
-
-// A functional component must be of type React.FC
 const App: React.FC = () => {
-  // useState can be used as a generic 
   const [user, setUser] = useState<IUser>({} as IUser)
   const [playlists, setPlaylists] = useState<IPlaylist[]>([])
   const [playlist, setPlaylist] = useState<Number>()
   const [tracks, setTracks] = useState<ITracks[]>([])
+  const [seedArtist, setSeedArtist] = useState<String>('')
+  const [seedTrack, setSeedTrack] = useState<String>('')
 
   // consts for Tuning component
   const [inst, setInst] = useState<number>(0.5)
@@ -44,7 +36,6 @@ const handleChangeEnergy = (e: React.SyntheticEvent) => {
 } 
 // handlers for Tuning component ===== END ======
 
-
   useEffect(() => {
     if (Object.keys(user).length) {
       axios.get(`/api/${user.spotifyId}/playlists`)
@@ -65,23 +56,29 @@ const handleChangeEnergy = (e: React.SyntheticEvent) => {
   }
 
   function handlePlaylistClick(id: Number): void {
-    // console.log("CLICKclackCLICK")
-    console.log(id)
     axios.get(`/api/${user.spotifyId}/playlists/${id}`)
       .then((res) => {
-        console.log("tracks: ", res.data)
-        setTracks(res.data)
+        console.log('heeeeeererererererererer')
+        // setTracks(res.data)
+        setSeedArtist(res.data[0].track.artists[0].id)
+        setSeedTrack(res.data[0].track.id)
+        console.log({seedArtist})
+        console.log({seedTrack})
       })
   }
 
   function handleCreateClick(): void {
-    // console.log("CLICKclackCLICK")
     console.log({inst}, {dance}, {energy})
-    // axios.get(`/api/${user.spotifyId}/playlists/${inst}/${dance}/${energy}`)
-    //   .then((res) => {
-    //     console.log("tracks: ", res.data)
-    //     setTracks(res.data)
-    //   })
+    // console.log({tracks})
+    // console.log('tttttrrrrraaaaaaacks: ',tracks[0].track.artists[0].name)
+    // console.log('tttttrrrrraaaaaaacks: ',tracks[0].track.artists[0].id)
+    // console.log('tttttrrrrraaaaaaacks: ',tracks[0].track.name)
+    // console.log('tttttrrrrraaaaaaacks: ',tracks[0].track.id)
+    axios.get(`/api/${user.spotifyId}/playlists/${inst}/${dance}/${energy}/${seedArtist}/${seedTrack}`)
+      .then((res) => {
+        // console.log("tracks: ", res.data)
+        setTracks(res.data)
+      })
   }
 
   // useEffect(() => {

@@ -1,5 +1,7 @@
 /// <reference types="react-scripts" />
 
+import { string } from "prop-types";
+
 export interface IUser {
     _id?: string;
     spotifyId: number;
@@ -11,7 +13,19 @@ export interface IPlaylist {
 }
 export interface ITracks {
     name: string;
+    track: any;
+    artists: string;
+    id: string;
 }
+
+// export interface IArtist {
+//     external_urls: {spotify: "https://open.spotify.com/artist/6kBjAFKyd0he7LiA5GQ3Gz"}
+//     href: string,
+//     id: "6kBjAFKyd0he7LiA5GQ3Gz"
+//     name: "Aqua"
+//     type: "artist"
+//     uri: "spotify:artist:6kBjAFKyd0he7LiA5GQ3Gz"
+// }
 
 export interface ITuning {
     inst: number;

@@ -3,8 +3,6 @@ import {ITuning} from '../react-app-env'
 const Tuning: React.FC<ITuning> =({inst, dance, energy, handleChangeInst, handleChangeDance, handleChangeEnergy}) => {
     
     // (JSX attribute) React.SelectHTMLAttributes<HTMLSelectElement>.onChange?: ((event: React.ChangeEvent<HTMLSelectElement>) => void) | undefined
-    
-  
 
     return(
         <div>
