@@ -45,6 +45,7 @@ const handleChangeEnergy = (e: React.SyntheticEvent) => {
     }
   }, [user])
 
+  // GET ALL Saved Tuning Configurations
   useEffect( () => {
     axios.get('/api').then( res => console.log(res.data))
   },[user])
@@ -72,16 +73,18 @@ const handleChangeEnergy = (e: React.SyntheticEvent) => {
   }
 
   function handleCreateClick(): void {
-    console.log({inst}, {dance}, {energy})
-    // console.log({tracks})
-    // console.log('tttttrrrrraaaaaaacks: ',tracks[0].track.artists[0].name)
-    // console.log('tttttrrrrraaaaaaacks: ',tracks[0].track.artists[0].id)
-    // console.log('tttttrrrrraaaaaaacks: ',tracks[0].track.name)
-    // console.log('tttttrrrrraaaaaaacks: ',tracks[0].track.id)
+    // console.log({inst}, {dance}, {energy})
     axios.get(`/api/${user.spotifyId}/playlists/${inst}/${dance}/${energy}/${seedArtist}/${seedTrack}`)
       .then((res) => {
         // console.log("tracks: ", res.data)
         setTracks(res.data)
+      })
+  }
+
+  function handleSaveTunings(): void {
+    axios.post(`/api/savetuning/${user.spotifyId}/${inst}/${dance}/${energy}/${seedArtist}/${seedTrack}`)
+      .then((res) => {
+        console.log('Saved tunings!!!')
       })
   }
 
@@ -107,7 +110,7 @@ const handleChangeEnergy = (e: React.SyntheticEvent) => {
         // </div>
       )
     }) 
-
+    console.log({tracks})
   return (
     <div className="App">
       <a onClick={handleLogin} href="/auth/spotify">Login to Spotify</a>
@@ -125,6 +128,8 @@ const handleChangeEnergy = (e: React.SyntheticEvent) => {
               handleChangeEnergy={handleChangeEnergy} 
               
       />
+      <button onClick={() => handleSaveTunings()} >Save these tuning parameters</button>
+      <hr/>
       <button onClick={() => handleCreateClick()} >Create New Playlist!</button>
     </div>
   );

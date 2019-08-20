@@ -12,8 +12,6 @@ passport.use(new SpotifyStrategy({
     callbackURL: "http://localhost:3000/auth/spotify/callback"
 },
 function(accessToken, refreshToken, expires_in, profile, cb) {
-    console.log("WTFWTFWTFWTFWTFWTFWTFWTFWTFWTFWTFWTFWTFWTFWTFWTFWTFWTFWTFWTFWTF")
-    console.log(profile.id)
     User.findOne({
         spotifyId: profile.id
     }, (err, user) => {
@@ -25,15 +23,15 @@ function(accessToken, refreshToken, expires_in, profile, cb) {
                 if (err) {
                     console.log("Here is an ERRRRRRORRR: ", err)
                 }
-                console.log("Should have made this new user:", newUser)
+                // console.log("Should have made this new user:", newUser)
                 let returnObj = Object.assign({}, newUser.toObject(), {accessToken})
-                console.log(returnObj)
+                // console.log(returnObj)
                 return cb(null, returnObj);
             })
         } else {
-            console.log("In db UUUUUSER ID:", user)
+            // console.log("In db UUUUUSER ID:", user)
             let returnObj = Object.assign({}, user, {accessToken})
-            console.log(returnObj)
+            // console.log(returnObj)
             return cb(null, returnObj);
         }
     })

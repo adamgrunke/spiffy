@@ -43,6 +43,7 @@ import apiRouter from './routes/api';
 app.use('/api', apiRouter);
 
 app.get('*', (req, res) => {
+    console.log("This is the ****** * * * * * CAAATCH ALLLLLl ROUTE")
     res.sendFile("index.html")
 })
 

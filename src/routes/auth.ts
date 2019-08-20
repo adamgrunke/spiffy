@@ -10,7 +10,7 @@ router.get('/spotify/callback',
     passport.authenticate('spotify', {failureRedirect: '/auth/login'}),
     (req, res) => {
         // Successful Authentication
-        console.log("THIS IS THE USER from the db: ", req.user);
+        // console.log("THIS IS THE USER from the db: ", req.user);
         res.render('success', {user: req.user})
     })
 
