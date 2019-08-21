@@ -4,8 +4,8 @@ import openNewAuthWindow from './openWindow';
 import axios from 'axios';
 import Tuning from './components/Tuning';
 import GeneratedTracks from './components/GeneratedTracks';
-// import SavedTunings from './components/SavedTunings'
-// import {ITuning} from './react-app-env';
+import SavedTunings from './components/SavedTunings'
+import {ITuning} from './react-app-env';
 import {IUser} from './react-app-env';
 import {IPlaylist} from './react-app-env';
 import {ITracks} from './react-app-env';
@@ -20,7 +20,7 @@ const App: React.FC = () => {
   const [genTracks, setGenTracks] = useState<IGeneratedTracks[]>([])
   const [seedArtist, setSeedArtist] = useState<String>('')
   const [seedTrack, setSeedTrack] = useState<String>('')
-  const [savedTunings, setSavedTunings] = useState<any>()
+  const [savedTunings, setSavedTunings] = useState<ISavedTunings[]>([])
 
   // consts for Tuning component
   const [inst, setInst] = useState<number>(0.5)
@@ -95,11 +95,12 @@ useEffect( () => {
   }
 
   function handleGetSavedTunings(): void {
+    console.log("WORK")
     axios.get(`/api/saved`)
       .then((res) => {
         console.log('Show saved tunings!!!', res.data)
         setSavedTunings(res.data)
-      })
+      }).catch( err => console.log(err))
   }
 
   var userData = Object.keys(user).length === 0 ? <p>No user</p> : <p> {user.spotifyId}</p>
@@ -137,7 +138,7 @@ useEffect( () => {
       <hr/>
       <hr/>
       <button onClick={() => handleGetSavedTunings()} >See saved tunings</button>
-      {/* <SavedTunings savedTunings={savedTunings}/> */}
+      <SavedTunings savedTunings={savedTunings}/>
 
 
     </div>

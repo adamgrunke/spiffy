@@ -65,11 +65,12 @@ router.get('/', (req, res) => {
 });
 
 router.get('/saved', (req, res) => {
-    Tuning.find({}), (err, tuning: ITuning ) => {
+    console.log("Hitting this route")
+    Tuning.find({}, (err, tuning: ITuning ) => {
         if (err) res.json(err)
         console.log(tuning)
-        res.send(tuning)
-    }
+        res.json(tuning)
+    })
 })
 
 // POST tuning parameters for a user

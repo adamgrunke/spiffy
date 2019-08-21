@@ -1,6 +1,9 @@
 Project Code Name: Spiffy
 
-User Story: Easily create a new playlist with a minimal effort 
+User Story: 
+
+
+Easily create a new playlist with a minimal effort 
 while maximizing specificity of the generated playlist. 
 
 The Spotify API provides tools to tune the attributes of a playlist that 
