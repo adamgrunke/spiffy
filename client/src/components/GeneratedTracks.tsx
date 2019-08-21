@@ -5,8 +5,6 @@ const GeneratedTracks: React.FC<IGeneratedTracks> =({genTracks}) => {
     // console.log("tracks from gen tracks component",tracks)
     // console.log("tracks is an array:", Array.isArray(tracks));
 
-    
-
 // display all tracks from generated playlist.
 var trackData = genTracks.map((track, id) => {
     return (

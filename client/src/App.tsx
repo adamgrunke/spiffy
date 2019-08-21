@@ -4,11 +4,13 @@ import openNewAuthWindow from './openWindow';
 import axios from 'axios';
 import Tuning from './components/Tuning';
 import GeneratedTracks from './components/GeneratedTracks';
-import {ITuning} from './react-app-env';
+import SavedTunings from './components/SavedTunings'
+// import {ITuning} from './react-app-env';
 import {IUser} from './react-app-env';
 import {IPlaylist} from './react-app-env';
 import {ITracks} from './react-app-env';
-import {IGeneratedTracks} from './react-app-env'
+import {IGeneratedTracks} from './react-app-env';
+import {ISavedTunings} from './react-app-env'
 
 const App: React.FC = () => {
   const [user, setUser] = useState<IUser>({} as IUser)
@@ -18,6 +20,7 @@ const App: React.FC = () => {
   const [genTracks, setGenTracks] = useState<IGeneratedTracks[]>([])
   const [seedArtist, setSeedArtist] = useState<String>('')
   const [seedTrack, setSeedTrack] = useState<String>('')
+  const [savedTunings, setSavedTunings] = useState<any>()
 
   // consts for Tuning component
   const [inst, setInst] = useState<number>(0.5)
@@ -48,10 +51,10 @@ const handleChangeEnergy = (e: React.SyntheticEvent) => {
     }
   }, [user])
 
-  // GET ALL Saved Tuning Configurations
-  useEffect( () => {
-    axios.get('/api').then( res => console.log(res.data))
-  },[user])
+// GET ALL Saved Tuning Configurations
+useEffect( () => {
+  axios.get('/api').then( res => console.log(res.data))
+  },[])
 
 
   function handleLogin(e: React.MouseEvent): void {
@@ -88,7 +91,14 @@ const handleChangeEnergy = (e: React.SyntheticEvent) => {
   function handleSaveTunings(): void {
     axios.post(`/api/savetuning/${user.spotifyId}/${inst}/${dance}/${energy}/${seedArtist}/${seedTrack}`)
       .then((res) => {
-        console.log('Saved tunings!!!')
+      })
+  }
+
+  function handleGetSavedTunings(): void {
+    axios.get(`/api/saved`)
+      .then((res) => {
+        console.log('Show saved tunings!!!', res.data)
+        setSavedTunings(res.data)
       })
   }
 
@@ -124,6 +134,11 @@ const handleChangeEnergy = (e: React.SyntheticEvent) => {
       <button onClick={() => handleCreateClick()} >Create New Playlist!</button>
       <hr/>
       <GeneratedTracks genTracks={genTracks}/>
+      <hr/>
+      <hr/>
+      <button onClick={() => handleGetSavedTunings()} >See saved tunings</button>
+      <SavedTunings savedTunings={savedTunings}/>
+
 
     </div>
   );

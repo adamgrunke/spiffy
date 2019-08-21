@@ -64,6 +64,14 @@ router.get('/', (req, res) => {
     })
 });
 
+router.get('/saved', (req, res) => {
+    Tuning.find({}), (err, tuning: ITuning ) => {
+        if (err) res.json(err)
+        console.log(tuning)
+        res.send(tuning)
+    }
+})
+
 // POST tuning parameters for a user
 router.post('/savetuning/:user_id/:inst/:dance/:energy/:artist/:track', (req, res) => {
     // create the tuning
