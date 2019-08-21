@@ -35,3 +35,16 @@ export interface ITuning {
     handleChangeDance: ChangeEvent<HTMLSelectElement>;
     handleChangeEnergy: ChangeEvent<HTMLSelectElement>;
 }
+
+export interface IGeneratedTracks {
+    genTracks: any[];
+}
+
+export interface ISavedTunings {
+    _id: number;
+    seedArtists: number;
+    seedTracks: number;
+    inst: number;
+    dance: number;
+    energy: number;
+}

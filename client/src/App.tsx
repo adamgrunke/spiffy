@@ -3,16 +3,19 @@ import './App.css';
 import openNewAuthWindow from './openWindow';
 import axios from 'axios';
 import Tuning from './components/Tuning';
+import GeneratedTracks from './components/GeneratedTracks';
 import {ITuning} from './react-app-env';
 import {IUser} from './react-app-env';
 import {IPlaylist} from './react-app-env';
 import {ITracks} from './react-app-env';
+import {IGeneratedTracks} from './react-app-env'
 
 const App: React.FC = () => {
   const [user, setUser] = useState<IUser>({} as IUser)
   const [playlists, setPlaylists] = useState<IPlaylist[]>([])
   const [playlist, setPlaylist] = useState<Number>()
   const [tracks, setTracks] = useState<ITracks[]>([])
+  const [genTracks, setGenTracks] = useState<IGeneratedTracks[]>([])
   const [seedArtist, setSeedArtist] = useState<String>('')
   const [seedTrack, setSeedTrack] = useState<String>('')
 
@@ -50,6 +53,7 @@ const handleChangeEnergy = (e: React.SyntheticEvent) => {
     axios.get('/api').then( res => console.log(res.data))
   },[user])
 
+
   function handleLogin(e: React.MouseEvent): void {
     e.preventDefault()
     var message: Promise<IUser> = openNewAuthWindow('/auth/spotify')
@@ -76,8 +80,8 @@ const handleChangeEnergy = (e: React.SyntheticEvent) => {
     // console.log({inst}, {dance}, {energy})
     axios.get(`/api/${user.spotifyId}/playlists/${inst}/${dance}/${energy}/${seedArtist}/${seedTrack}`)
       .then((res) => {
-        // console.log("tracks: ", res.data)
-        setTracks(res.data)
+        // console.log("tracks from create: ", res.data.tracks, res.data.seeds)
+        setGenTracks(res.data.tracks)
       })
   }
 
@@ -88,29 +92,16 @@ const handleChangeEnergy = (e: React.SyntheticEvent) => {
       })
   }
 
-  // useEffect(() => {
-  //   // console.log("getting TRAACCKS", playlist)
-  //   axios.get(`/api/${user.spotifyId}/playlists/${playlist}`)
-  //   // axios.get(`/api/${user.spotifyId}/playlists/37i9dQZF1DWZtZ8vUCzche`)
-  //   .then((res) => {
-  //     console.log("tracks: ", res.data)
-  //     setTracks(res.data)
-  //   })
-  // }, [playlist])
-
   var userData = Object.keys(user).length === 0 ? <p>No user</p> : <p> {user.spotifyId}</p>
   
-    var playlistData = playlists.map((playlist, id) => {
-      return (
-        <div onClick={() => handlePlaylistClick(playlist.id)}  className="playlist">
-          <p> {playlist.name}</p>
-        </div>
-        // <div onClick={() => setPlaylist(playlist.id)}  className="playlist">
-        //   <p> {playlist.name}</p>
-        // </div>
-      )
-    }) 
-    console.log({tracks})
+  var playlistData = playlists.map((playlist, id) => {
+    return (
+      <div onClick={() => handlePlaylistClick(playlist.id)}  className="playlist">
+        <p> {playlist.name}</p>
+      </div>
+    )
+  }) 
+    console.log({genTracks})
   return (
     <div className="App">
       <a onClick={handleLogin} href="/auth/spotify">Login to Spotify</a>
@@ -131,6 +122,9 @@ const handleChangeEnergy = (e: React.SyntheticEvent) => {
       <button onClick={() => handleSaveTunings()} >Save these tuning parameters</button>
       <hr/>
       <button onClick={() => handleCreateClick()} >Create New Playlist!</button>
+      <hr/>
+      <GeneratedTracks genTracks={genTracks}/>
+
     </div>
   );
 }
