@@ -1,0 +1,30 @@
+Project Code Name: Spiffy
+
+User Story: Easily create a new playlist with a minimal effort 
+while maximizing specificity of the generated playlist. 
+
+The Spotify API provides tools to tune the attributes of a playlist that 
+users do not have access to in their native app. 
+
+Give the users access to these tuneable controls and seed the playlist
+generator with the user's current playlists.
+
+
+API: Spotify
+
+Technologies: Typescript, React (using hooks), Node.js, Axios, MongoDB
+
+Planning and Organization: Trello board 
+https://trello.com/b/gLFctp1q/spiffy
+
+Models: 
+
+User & Tunings
+
+User for login/authorization
+Tunings for saving the tunable attibutes for the Spotify playlist recommendation
+
+
+Future - all future features are currently on my Trello board.
+
+

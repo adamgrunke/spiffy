@@ -4,7 +4,7 @@ import openNewAuthWindow from './openWindow';
 import axios from 'axios';
 import Tuning from './components/Tuning';
 import GeneratedTracks from './components/GeneratedTracks';
-import SavedTunings from './components/SavedTunings'
+// import SavedTunings from './components/SavedTunings'
 // import {ITuning} from './react-app-env';
 import {IUser} from './react-app-env';
 import {IPlaylist} from './react-app-env';
@@ -137,7 +137,7 @@ useEffect( () => {
       <hr/>
       <hr/>
       <button onClick={() => handleGetSavedTunings()} >See saved tunings</button>
-      <SavedTunings savedTunings={savedTunings}/>
+      {/* <SavedTunings savedTunings={savedTunings}/> */}
 
 
     </div>
