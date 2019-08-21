@@ -11,7 +11,6 @@ const SavedTunings: React.FC<fuckThis> = (props) => {
         return (
             <div>
                 <p>{tuning._id}: {tuning.dance} | {tuning.energy} | {tuning.inst}</p>
-                <p>test saved</p>
             </div>
         )
     })
