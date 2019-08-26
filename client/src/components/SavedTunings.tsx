@@ -1,11 +1,11 @@
 import React, {useEffect} from 'react';
 import {ISavedTunings} from '../react-app-env'
 
-interface fuckThis {
+interface savedTuningsAlt {
     savedTunings: ISavedTunings[]
 }
 
-const SavedTunings: React.FC<fuckThis> = (props) => {
+const SavedTunings: React.FC<savedTuningsAlt> = (props) => {
 
     var showSaved = props.savedTunings.map((tuning, id) => {
         return (
