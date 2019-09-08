@@ -9,8 +9,8 @@ import User from '../models/user';
 passport.use(new SpotifyStrategy({
     clientID: process.env.SPOTIFY_CLIENT_ID,
     clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
-    callbackURL: "https://afternoon-shore-37936.herokuapp.com/auth/spotify/callback"
-    // callbackURL: "http://localhost:3000/auth/spotify/callback"
+    // callbackURL: "https://afternoon-shore-37936.herokuapp.com/auth/spotify/callback"
+    callbackURL: "http://localhost:3000/auth/spotify/callback"
 },
 function(accessToken, refreshToken, expires_in, profile, cb) {
     User.findOne({

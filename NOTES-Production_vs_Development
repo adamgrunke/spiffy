@@ -1,0 +1,18 @@
+ppConfig
+
+package.json client
+    For DEV:
+        ADD: "prestart": "tsc && cd client && npm run build",
+
+    For PROD: 
+        REMOVE: "prestart": "tsc && cd client && npm run build",
+
+
+package.json server
+    For DEV:
+        REMOVE: "heroku-postbuild": "cd client && npm install --only-dev && npm install && npm run build"
+
+
+    For PROD:
+        ADD:    "heroku-postbuild": "cd client && npm install --only-dev && npm install && npm run build"
+

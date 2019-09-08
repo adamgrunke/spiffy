@@ -11,6 +11,7 @@
     <p>You are authenticated...</p>
     <script>
         document.body.onload = function() {
+            console.log("testtttewsafakfjadfkaf;afadlfkajfl;adkfja;dfjf;")
             var injectedUser = <%- JSON.stringify(user) %>;
             window.opener.postMessage({
                 payload: injectedUser, 
