@@ -11,8 +11,10 @@ package.json client
 package.json server
     For DEV:
         REMOVE: "heroku-postbuild": "cd client && npm install --only-dev && npm install && npm run build"
+        REMOVE:     "postinstall": "tsc"
 
 
     For PROD:
         ADD:    "heroku-postbuild": "cd client && npm install --only-dev && npm install && npm run build"
+        ADD:        "postinstall": "tsc"
 

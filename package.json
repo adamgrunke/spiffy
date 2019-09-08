@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node build/server.js",
-    "postinstall": "tsc"
+    "prestart": "tsc && cd client && npm run build",
+    "start": "node build/server.js"
   },
   "author": "",
   "license": "ISC",

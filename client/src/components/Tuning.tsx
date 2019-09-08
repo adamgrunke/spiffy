@@ -5,7 +5,7 @@ const Tuning: React.FC<ITuning> =({inst, dance, energy, handleChangeInst, handle
     // (JSX attribute) React.SelectHTMLAttributes<HTMLSelectElement>.onChange?: ((event: React.ChangeEvent<HTMLSelectElement>) => void) | undefined
 
     return(
-        <div>
+        <div>   
             <div>Instrumentalnessssss
                 <select name="instrumentalness" 
                         value={inst}
@@ -21,9 +21,19 @@ const Tuning: React.FC<ITuning> =({inst, dance, energy, handleChangeInst, handle
                     <option value='0.7'>0.7</option>
                     <option value='0.8'>0.8</option>
                     <option value='0.9'>0.9</option>
-                    {/* <option value='1.0'>1.0</option> */}
+                    <option value='1.0'>1.0</option>
                 </select>
-            </div>
+            </div> 
+{/* 
+            <div>Instrumentalnessssss22222222
+                <input  name="instrumentalness"
+                        type="range" 
+                        min="1" max="10">
+                        value={inst}
+                        onChange={handleChangeInst}
+                </input>
+                <button>this button does nothing</button>
+            </div> */}
 
             <div>dANceaBility
                 <select name="danceability" 
