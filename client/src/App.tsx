@@ -5,32 +5,44 @@ import axios from 'axios';
 import Tuning from './components/Tuning';
 import GeneratedTracks from './components/GeneratedTracks';
 import SavedTunings from './components/SavedTunings'
-import {ITuning} from './react-app-env';
+// import {ITuning} from './react-app-env';
 import {IUser} from './react-app-env';
 import {IPlaylist} from './react-app-env';
-import {ITracks} from './react-app-env';
+// import {ITracks} from './react-app-env';
 import {IGeneratedTracks} from './react-app-env';
 import {ISavedTunings} from './react-app-env'
 
 const App: React.FC = () => {
   const [user, setUser] = useState<IUser>({} as IUser)
   const [playlists, setPlaylists] = useState<IPlaylist[]>([])
-  const [playlist, setPlaylist] = useState<Number>()
-  const [tracks, setTracks] = useState<ITracks[]>([])
+  // const [playlist, setPlaylist] = useState<Number>()
+  // const [tracks, setTracks] = useState<ITracks[]>([])
   const [genTracks, setGenTracks] = useState<IGeneratedTracks[]>([])
   const [seedArtist, setSeedArtist] = useState<String>('')
   const [seedTrack, setSeedTrack] = useState<String>('')
   const [savedTunings, setSavedTunings] = useState<ISavedTunings[]>([])
 
   // consts for Tuning component
+  const [limit, setLimit] = useState<number>(5)
   const [inst, setInst] = useState<number>(0.5)
+  const [instSlider, setInstSlider] = useState<number>(0.5)
   const [dance, setDance] = useState<number>(0.5)
   const [energy, setEnergy] = useState<number>(0.5)
 
 // handlers for Tuning component ===== START ======
+const handleChangeLimit = (e: React.SyntheticEvent<HTMLSelectElement>) => {
+  let value = parseFloat((e.target as HTMLSelectElement).value)
+  setLimit(value)
+}   
+
 const handleChangeInst = (e: React.SyntheticEvent<HTMLSelectElement>) => {
   let value = parseFloat((e.target as HTMLSelectElement).value)
   setInst(value)
+}   
+// Slider test
+const handleChangeinstSlider = (e: React.SyntheticEvent<HTMLSelectElement>) => {
+  let value = parseFloat((e.target as HTMLSelectElement).value)
+  setInstSlider(value)
 }   
 const handleChangeDance = (e: React.SyntheticEvent) => {
   let value = parseFloat((e.target as HTMLSelectElement).value)
@@ -124,7 +136,8 @@ useEffect( () => {
       {/* {
         user ? console.log(user) : "no user"
       } */}
-      <Tuning inst={inst} dance={dance} energy={energy}
+      <Tuning limit={limit} inst={inst} dance={dance} energy={energy}
+              handleChangeLimit={handleChangeLimit}
               handleChangeInst={handleChangeInst}
               handleChangeDance={handleChangeDance}
               handleChangeEnergy={handleChangeEnergy} 

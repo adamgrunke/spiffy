@@ -28,12 +28,15 @@ export interface ITracks {
 // }
 
 export interface ITuning {
+    limit: number;
     inst: number;
     dance: number;
     energy: number;
+    handleChangeLimit: ChangeEvent<HTMLSelectElement>;
     handleChangeInst: ChangeEvent<HTMLSelectElement>;
     handleChangeDance: ChangeEvent<HTMLSelectElement>;
     handleChangeEnergy: ChangeEvent<HTMLSelectElement>;
+
 }
 
 export interface IGeneratedTracks {

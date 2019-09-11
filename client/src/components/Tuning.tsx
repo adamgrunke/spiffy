@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
-import {ITuning} from '../react-app-env'
-const Tuning: React.FC<ITuning> =({inst, dance, energy, handleChangeInst, handleChangeDance, handleChangeEnergy}) => {
+import {ITuning} from '../react-app-env';
+const Tuning: React.FC<ITuning> =(
+    {limit, inst, dance, energy,
+    handleChangeLimit, handleChangeInst, handleChangeDance, handleChangeEnergy}) => {
     
     // (JSX attribute) React.SelectHTMLAttributes<HTMLSelectElement>.onChange?: ((event: React.ChangeEvent<HTMLSelectElement>) => void) | undefined
 
@@ -24,16 +26,6 @@ const Tuning: React.FC<ITuning> =({inst, dance, energy, handleChangeInst, handle
                     <option value='1.0'>1.0</option>
                 </select>
             </div> 
-{/* 
-            <div>Instrumentalnessssss22222222
-                <input  name="instrumentalness"
-                        type="range" 
-                        min="1" max="10">
-                        value={inst}
-                        onChange={handleChangeInst}
-                </input>
-                <button>this button does nothing</button>
-            </div> */}
 
             <div>dANceaBility
                 <select name="danceability" 
