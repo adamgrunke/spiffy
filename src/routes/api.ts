@@ -47,7 +47,8 @@ router.get('/:user_id/playlists/:inst/:dance/:energy/:artist/:track', (req, res)
             'Authorization': `Bearer ${req.user.accessToken}`
         }
     }
-    axios.get(`https://api.spotify.com/v1/recommendations?limit=5&market=US&seed_artists=${req.params.artist}&seed_tracks=${req.params.track}&target_danceability=${req.params.dance}&target_energy=${req.params.energy}&target_instrumentalness=${req.params.inst}`, config)
+    let instDecimal = req.params.inst
+    axios.get(`https://api.spotify.com/v1/recommendations?limit=5&market=US&seed_artists=${req.params.artist}&seed_tracks=${req.params.track}&target_danceability=${req.params.dance}&target_energy=${req.params.energy}&target_instrumentalness=${instDecimal}`, config)
         .then((response) => {
             res.json(response.data);
         }).catch((err) => {

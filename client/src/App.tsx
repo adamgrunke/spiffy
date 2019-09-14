@@ -24,8 +24,8 @@ const App: React.FC = () => {
 
   // consts for Tuning component
   const [limit, setLimit] = useState<number>(5)
-  const [inst, setInst] = useState<number>(0.5)
-  const [instSlider, setInstSlider] = useState<number>(0.5)
+  const [inst, setInst] = useState<number>(5)
+  // const [instSlider, setInstSlider] = useState<number>(0.5)
   const [dance, setDance] = useState<number>(0.5)
   const [energy, setEnergy] = useState<number>(0.5)
 
@@ -36,14 +36,15 @@ const handleChangeLimit = (e: React.SyntheticEvent<HTMLSelectElement>) => {
 }   
 
 const handleChangeInst = (e: React.SyntheticEvent<HTMLSelectElement>) => {
-  let value = parseFloat((e.target as HTMLSelectElement).value)
+  // let value = parseFloat((e.target as HTMLSelectElement).value)
+  let value = parseInt((e.target as HTMLSelectElement).value)
   setInst(value)
 }   
 // Slider test
-const handleChangeinstSlider = (e: React.SyntheticEvent<HTMLSelectElement>) => {
-  let value = parseFloat((e.target as HTMLSelectElement).value)
-  setInstSlider(value)
-}   
+// const handleChangeinstSlider = (e: React.SyntheticEvent<HTMLSelectElement>) => {
+//   let value = parseFloat((e.target as HTMLSelectElement).value)
+//   setInstSlider(value)
+// }   
 const handleChangeDance = (e: React.SyntheticEvent) => {
   let value = parseFloat((e.target as HTMLSelectElement).value)
   setDance(value)
