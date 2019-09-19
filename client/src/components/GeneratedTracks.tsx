@@ -14,10 +14,12 @@ var trackData = genTracks.map((track, id) => {
     )     
 }) 
 
+
     return(
         <div>
             <h3>Artist   :   Song</h3>
             <h4>{trackData}</h4>
+            
         </div>
     );
 }

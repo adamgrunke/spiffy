@@ -107,6 +107,11 @@ useEffect( () => {
       })
   }
 
+  function handleSendPlaylist(): void {
+    console.log("Sending Playlist to Spotify")
+    axios.post(`/api/${user.spotifyId}/`)
+  }
+
   function handleGetSavedTunings(): void {
     console.log("WORK")
     axios.get(`/api/saved`)
@@ -149,6 +154,7 @@ useEffect( () => {
       <button onClick={() => handleCreateClick()} >Create New Playlist!</button>
       <hr/>
       <GeneratedTracks genTracks={genTracks}/>
+      <button onClick={() => handleSendPlaylist()} > Send playlist to Spotify</button>
       <hr/>
       <hr/>
       <button onClick={() => handleGetSavedTunings()} >See saved tunings</button>
